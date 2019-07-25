@@ -1,4 +1,4 @@
-# NODE-PROXIFY
+# NODE-PROXIFY ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/tbhaxor/node-proxify) ![GitHub package.json version](https://img.shields.io/github/package-json/v/tbhaxor/node-proxify) ![GitHub](https://img.shields.io/github/license/tbhaxor/node-proxify) ![GitHub last commit](https://img.shields.io/github/last-commit/tbhaxor/node-proxify) ![npm](https://img.shields.io/npm/dw/tbhaxor/proxify)
 
 **node-proxify** is a promise based handy module for nodejs developers to find fresh and working free proxies from https://free-proxy-list.net/ by calling only one function
 
