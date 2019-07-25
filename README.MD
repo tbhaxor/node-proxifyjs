@@ -1,4 +1,4 @@
-`# NODE-PROXIFY
+# NODE-PROXIFY
 
 **node-proxify** is a promise based handy module for nodejs developers to find fresh and working free proxies from https://free-proxy-list.net/ by calling only one function
 
