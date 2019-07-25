@@ -1,0 +1,34 @@
+{
+  "name": "@tbhaxor/proxify",
+  "version": "1.0.0",
+  "description": "Handy node.js package to find fresh and working proxies from https://free-proxy-list.net/",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "grunt --gruntfile Gruntfile",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tbhaxor/node-proxifyjs.git"
+  },
+  "keywords": [
+    "tbhaxor",
+    "proxies",
+    "web proxies",
+    "free proxies"
+  ],
+  "author": "Gurkirat Singh <tbhaxor@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/tbhaxor/node-proxifyjs/issues"
+  },
+  "homepage": "https://github.com/tbhaxor/node-proxifyjs#readme",
+  "devDependencies": {
+    "@types/node": "^12.6.8",
+    "grunt": "^1.0.4",
+    "grunt-cli": "^1.3.2",
+    "grunt-ts": "^6.0.0-beta.22",
+    "typescript": "^3.5.3"
+  }
+}
