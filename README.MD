@@ -1,4 +1,4 @@
-# NODE-PROXIFY ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/tbhaxor/node-proxify) ![GitHub package.json version](https://img.shields.io/github/package-json/v/tbhaxor/node-proxify) ![GitHub](https://img.shields.io/github/license/tbhaxor/node-proxify) ![GitHub last commit](https://img.shields.io/github/last-commit/tbhaxor/node-proxify) ![npm](https://img.shields.io/npm/dw/tbhaxor/proxify)
+# NODE-PROXIFY ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/tbhaxor/node-proxify) ![GitHub package.json version](https://img.shields.io/github/package-json/v/tbhaxor/node-proxify) ![GitHub](https://img.shields.io/github/license/tbhaxor/node-proxify) ![GitHub last commit](https://img.shields.io/github/last-commit/tbhaxor/node-proxify) ![npm](https://img.shields.io/npm/dw/proxifyjs)
 
 **node-proxify** is a promise based handy module for nodejs developers to find fresh and working free proxies from https://free-proxy-list.net/ by calling only one function
 
@@ -12,13 +12,13 @@
 1. Install from npm
 
    ```sh
-   $ npm i @tbhaxor/proxify
+   $ npm i proxifyjs
    ```
 
 2. Use
 
    ```ts
-   const proxify = require("@tbhaxor/proxify");
+   const proxify = require("proxifyjs");
 
    (async () => {
      let data = await proxify(); // this will return
@@ -33,7 +33,7 @@
   pass an object property `count` to the function
 
   ```ts
-  const proxify = require("@tbhaxor/proxify");
+  const proxify = require("proxifyjs");
 
   (async () => {
     let data = await proxify({ count: 20 }); // this will return first 20 proxies
@@ -80,4 +80,4 @@
 
 ## License
 
-**node-proxify** is licensed under [Apache-2.0](https://github.com/tbhaxor/node-proxifyjs/blob/master/LICENSE) license
+**node-proxifyjs** is licensed under [Apache-2.0](https://github.com/tbhaxor/node-proxifyjs/blob/master/LICENSE) license
