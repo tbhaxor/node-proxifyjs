@@ -4,6 +4,9 @@
 
 ## Requirements
 
+1. node.js
+2. npm
+
 ## Install and Use
 
 1. Install from npm
