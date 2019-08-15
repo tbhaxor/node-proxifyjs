@@ -58,8 +58,11 @@ export default function(filter: IFilter): Promise<IResult[]> {
           // getting the output
           let output: IResult[] = raw.map(format);
 
+          if (!filter) {
+            resolve(output);
+          }
           // check if count is passed
-          if (filter.count) {
+          else if (filter.count) {
             // if requested for more than 300
             if (filter.count > 300)
               // reject the request
@@ -69,7 +72,6 @@ export default function(filter: IFilter): Promise<IResult[]> {
               resolve(output.slice(0, filter.count));
             }
           } else {
-            // otherwise send it
             resolve(output);
           }
         });
