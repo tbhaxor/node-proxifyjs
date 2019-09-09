@@ -15,4 +15,5 @@ export interface IResult {
 
 export interface IFilter {
   count?: number;
+  https?: boolean;
 }
