@@ -23,5 +23,5 @@ export interface IFilter {
   https?: boolean;
   google?: boolean;
   country?: IFilterCountry;
+  type?: "anonymous" | "elite proxy" | "transparent";
 }
-``;

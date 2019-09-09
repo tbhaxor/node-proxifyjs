@@ -81,6 +81,12 @@ export default function(filter: IFilter): Promise<IResult[]> {
             }
           }
 
+          if (
+            ["anonymous", "elite proxy", "transparent"].includes(filter.type)
+          ) {
+            output = output.filter(v => v.type == filter.type);
+          }
+
           if (filter.count === undefined) {
             resolve(output);
           } else if (filter.count > 300) {
