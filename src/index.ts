@@ -68,9 +68,19 @@ export default function(filter: IFilter): Promise<IResult[]> {
               // reject the request
               reject(new Error("Proxies limit can't exceed 300"));
             else {
+              // if passed https with count, filter out the https
+              if (filter.https !== undefined)
+                output = output.filter(v => v.https == filter.https);
               // slice and send it
               resolve(output.slice(0, filter.count));
             }
+          }
+          // if count is not passed, but https is passed
+          else if (filter.https !== undefined) {
+            // filtering out https
+            output = output.filter(v => v.https == filter.https);
+            // send it
+            resolve(output);
           } else {
             resolve(output);
           }
