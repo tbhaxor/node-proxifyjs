@@ -58,30 +58,35 @@ export default function(filter: IFilter): Promise<IResult[]> {
           // getting the output
           let output: IResult[] = raw.map(format);
 
-          if (!filter) {
+          if (!filter || Object.keys(filter).length == 0) {
             resolve(output);
           }
-          // check if count is passed
-          else if (filter.count) {
-            // if requested for more than 300
-            if (filter.count > 300)
-              // reject the request
-              reject(new Error("Proxies limit can't exceed 300"));
+          if (filter.https !== undefined)
+            output = output.filter(v => v.https == filter.https);
+          if (filter.google !== undefined)
+            output = output.filter(v => v.google == filter.google);
+
+          if (filter.country !== undefined) {
+            if (Object.keys(filter.country).length == 0)
+              reject(new Error("Insufficient filter predicates"));
             else {
-              // if passed https with count, filter out the https
-              if (filter.https !== undefined)
-                output = output.filter(v => v.https == filter.https);
-              // slice and send it
-              resolve(output.slice(0, filter.count));
+              if (filter.country.code !== undefined) {
+                output = output.filter(
+                  v => v.country.code == filter.country.code
+                );
+              } else if (filter.country.name !== undefined) {
+                let r = new RegExp(filter.country.name, "i");
+                output = output.filter(v => r.test(v.country.name));
+              }
             }
           }
-          // if count is not passed, but https is passed
-          else if (filter.https !== undefined) {
-            // filtering out https
-            output = output.filter(v => v.https == filter.https);
-            // send it
+
+          if (filter.count === undefined) {
             resolve(output);
+          } else if (filter.count > 300) {
+            reject(new Error("Count of proxies can not exceed 300"));
           } else {
+            output = output.slice(0, filter.count);
             resolve(output);
           }
         });

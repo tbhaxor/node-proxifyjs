@@ -13,7 +13,15 @@ export interface IResult {
   lastChecked: string;
 }
 
+export interface IFilterCountry {
+  name?: string;
+  code?: string;
+}
+
 export interface IFilter {
   count?: number;
   https?: boolean;
+  google?: boolean;
+  country?: IFilterCountry;
 }
+``;
