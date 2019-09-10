@@ -21,7 +21,7 @@
    import proxify from "node-proxifyjs";
 
    (async () => {
-     let data = await proxify(); // this will return
+     let data = await proxify(); // this will return all 300 proxies
      console.log(data);
    })();
    ```
@@ -34,12 +34,14 @@
 
 ## API
 
-- **fetching `n` proxies**
+### Filtering Parameters
 
-  pass an object property `count` to the function
+- **Fetching `n` proxies**
+
+  pass an object property `count` to the function, only _number_
 
   ```ts
-  const proxify = require("node-proxifyjs");
+  import proxify from "node-proxifyjs";
 
   (async () => {
     let data = await proxify({ count: 20 }); // this will return first 20 proxies
@@ -47,24 +49,84 @@
   })();
   ```
 
-- **returns**
+* **Fetching `google` proxies**
+
+  pass an object property `google` to the function, only _boolean_
 
   ```ts
-  interface ICountry {
-    code: string; // country code
-    name: string; // country name
-  }
+  import proxify from "node-proxifyjs";
 
-  interface IResult {
-    host: string; // the ip
-    port: number; // port numbeer
-    country: ICountry; // country from above interface
-    type: string; // type of proxy (elite, anonymous, transparent)
-    google: boolean; // is google
-    https: boolean; // is https ssl signed
-    lastChecked: string; // last checked for working
-  }
+  (async () => {
+    let data = await proxify({ google: true }); // pass google: false if you dont want google proxies
+    console.log(data);
+  })();
   ```
+
+- **Fetching `https` proxies**
+
+  pass an object property `https` to the function, only _boolean_
+
+  ```ts
+  import proxify from "node-proxifyjs";
+
+  (async () => {
+    let data = await proxify({ https: true }); // pass https: false if you dont want https proxies
+    console.log(data);
+  })();
+  ```
+
+- **Fetching `country` specific proxies**
+
+  pass an object property `country` to the function, only `{code?: string, name?: Regrex String}`
+
+  **Note:** Either `code` or `name` will work, both of them at same time will not work
+
+  ```ts
+  import proxify from "node-proxifyjs";
+
+  (async () => {
+    let data = await proxify({ country: { code: "US" } }); // pass the name property instead of code if you want to perform regexp search
+    console.log(data);
+  })();
+  ```
+
+- **Fetching proxies by `type`**
+
+  pass an object property `type` to the function, only _string_
+
+  ```ts
+  import proxify from "node-proxifyjs";
+
+  (async () => {
+    let data = await proxify({ type: "elite proxy" }); // type can be either 'transparent', 'anonymous' or 'elite proxy' only
+    console.log(data);
+  })();
+  ```
+
+**Note:** None, one, some or all filtering predicates can be used at once
+
+```ts
+proxify({ count: 30, country: { code: "IN" }, type: "elite proxy" });
+```
+
+### Returns
+
+```ts
+interface ICountry {
+  code: string; // country code
+  name: string; // country name
+}
+
+interface IResult {
+  host: string; // the ip
+  port: number; // port numbeer
+  country: ICountry; // country from above interface
+  type: string; // type of proxy (elite, anonymous, transparent)
+  google: boolean; // is google
+  https: boolean; // is https ssl signed
+  lastChecked: string; // last checked for working
+}
+```
 
 ## Contribution
 
@@ -76,11 +138,6 @@
 
 ### Scope
 
-- Adding more filter
-  - filter by **country**
-  - filter by **https**
-  - filter by **google**
-  - filter by **type**
 - Documentation
 - Bugs / Suggestions / Feature Requests
 
