@@ -58,20 +58,67 @@ export default function(filter: IFilter): Promise<IResult[]> {
           // getting the output
           let output: IResult[] = raw.map(format);
 
-          if (!filter) {
+          // check if no filter passed
+          if (!filter || Object.keys(filter).length == 0) {
+            // send all results
             resolve(output);
           }
-          // check if count is passed
-          else if (filter.count) {
-            // if requested for more than 300
-            if (filter.count > 300)
-              // reject the request
-              reject(new Error("Proxies limit can't exceed 300"));
+          console.log(1);
+          // check if https flag is set or not
+          if (filter.https !== undefined)
+            // filter out by the user input
+            output = output.filter(v => v.https == filter.https);
+
+          // check if google flag is set or not
+          if (filter.google !== undefined)
+            // filter out by the user input
+            output = output.filter(v => v.google == filter.google);
+
+          // check if country flag is set or not
+          if (filter.country !== undefined) {
+            // check if country sub flag is set or not
+            if (Object.keys(filter.country).length == 0)
+              // send the error
+              reject(new Error("Insufficient filter predicates"));
             else {
-              // slice and send it
-              resolve(output.slice(0, filter.count));
+              // filter either by code
+              if (filter.country.code !== undefined) {
+                // filter out by the user input
+                output = output.filter(
+                  v => v.country.code == filter.country.code
+                );
+              }
+              // or by name with regex
+              else if (filter.country.name !== undefined) {
+                // make the regexp
+                let r = new RegExp(filter.country.name, "i");
+                // filter out by the user input
+                output = output.filter(v => r.test(v.country.name));
+              }
             }
+          }
+
+          // check if valid type passed
+          if (
+            ["anonymous", "elite proxy", "transparent"].includes(filter.type)
+          ) {
+            // filter out by the user input
+            output = output.filter(v => v.type == filter.type);
+          }
+
+          // check if count is passed
+          if (filter.count === undefined) {
+            // send previous
+            resolve(output);
+          }
+          // check if user wants more than 300
+          else if (filter.count > 300) {
+            // reject with the error
+            reject(new Error("Count of proxies can not exceed 300"));
           } else {
+            // slice the proxy
+            output = output.slice(0, filter.count);
+            // send it <3
             resolve(output);
           }
         });

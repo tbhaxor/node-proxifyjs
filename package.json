@@ -1,6 +1,6 @@
 {
   "name": "node-proxifyjs",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Handy node.js package to find fresh and working proxies from https://free-proxy-list.net/",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
