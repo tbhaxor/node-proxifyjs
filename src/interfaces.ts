@@ -14,7 +14,7 @@ export interface IResult {
 }
 
 export interface IFilterCountry {
-  name?: string;
+  name?: RegExp | string;
   code?: string;
 }
 

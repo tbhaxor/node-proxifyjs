@@ -144,10 +144,3 @@ interface IResult {
 ## License
 
 **node-proxifyjs** is licensed under [Apache-2.0](https://github.com/tbhaxor/node-proxifyjs/blob/master/LICENSE) license
-
-## Contact Info
-
-Email: tbhaxor@gmail.com <br>
-Instagram: [@bootagorira](https://instagram.com/bootagorira)  <br>
-Twitter: [@tbhaxor](https://twitter.com/tbhaxor) <br>
-Linkedin: [gurkirat--singh](https://linkedin.com/in/gurkirat--singh)
